@@ -3,121 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmetic Shop | LTC Payments</title>
+    <title>Premium Discord Cosmetics | LTC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         :root {
-            --discord-dark: #313338;
-            --discord-card: #2B2D31;
+            --discord-dark: #232428;
+            --discord-card: #1e1f22;
             --blurple: #5865F2;
+            --nitro-pink: #ff73fa;
+            --boost-pink: #f47fff;
             --ltc-blue: #345D9D;
-            --text-main: #DBDEE1;
+            --text-main: #dbdee1;
         }
 
         body {
             background-color: var(--discord-dark);
             color: var(--text-main);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
             margin: 0;
+            overflow-x: hidden;
         }
 
-        h1 { color: white; margin-bottom: 10px; }
-        .subtitle { margin-bottom: 40px; color: #B5BAC1; }
+        /* Background Glow Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        h1 { 
+            color: white; 
+            font-size: 3rem; 
+            margin-bottom: 5px; 
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .subtitle { margin-bottom: 50px; color: #b5bac1; font-size: 1.1rem; }
 
         .container {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
             justify-content: center;
-            max-width: 1000px;
+            max-width: 1100px;
         }
 
         .card {
             background: var(--discord-card);
-            border-radius: 8px;
-            padding: 25px;
-            width: 280px;
+            border-radius: 16px;
+            padding: 30px;
+            width: 300px;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.2s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover { transform: translateY(-5px); border-color: var(--blurple); }
+        .card:hover {
+            transform: translateY(-12px);
+            border-color: var(--blurple);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+        }
 
-        .price { font-size: 24px; font-weight: bold; color: #FFF; margin: 15px 0; }
-        
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .price { 
+            font-size: 28px; 
+            font-weight: 800; 
+            color: #fff; 
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .price span { font-size: 16px; color: #31B475; }
+
         .buy-btn {
-            background-color: var(--blurple);
+            background: var(--blurple);
             color: white;
             text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 8px;
+            display: block;
             font-weight: bold;
-            margin-top: 10px;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .buy-btn:hover {
+            background: #4752c4;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
         }
 
         .ltc-section {
-            margin-top: 50px;
-            background: #1E1F22;
-            padding: 20px;
-            border-radius: 10px;
+            margin-top: 60px;
+            background: #111214;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            border-left: 4px solid var(--ltc-blue);
+            border: 1px solid var(--ltc-blue);
+            width: 100%;
+            max-width: 500px;
         }
 
         .address {
             background: #000;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: monospace;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
             cursor: pointer;
             color: #31B475;
+            word-break: break-all;
+            margin: 15px 0;
+            border: 1px dashed #333;
+            transition: all 0.2s;
+        }
+
+        .address:active { transform: scale(0.98); background: #0a0a0a; }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--nitro-pink);
+            color: black;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <h1>Cosmetic Shop</h1>
-    <p class="subtitle">Cheap Nitro, Boosts & Decos • Paying with Litecoin (LTC)</p>
+    <h1 class="animate__animated animate__fadeInDown">Cosmetic Shop</h1>
+    <p class="subtitle animate__animated animate__fadeIn">Fast Delivery • Secure Payments via Litecoin</p>
 
     <div class="container">
-        <div class="card">
+        <div class="card animate__animated animate__fadeInLeft">
+            <div class="badge">Hot</div>
+            <div class="icon-circle">💎</div>
             <h3>Discord Nitro</h3>
-            <p>1 Month Full Nitro Subscription</p>
-            <div class="price">$5.00</div>
-            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">Order on Discord</a>
+            <p>Full Month Subscription with 2 Boosts Included.</p>
+            <div class="price">$5.00 <span>LTC</span></div>
+            <a href="https://discord.com/users/YOUR_USER_ID" class="buy-btn">DM to Purchase</a>
         </div>
 
-        <div class="card">
-            <h3>14x Server Boosts</h3>
-            <p>1 Month • Fast Delivery</p>
-            <div class="price">$10.00</div>
-            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">Order on Discord</a>
+        <div class="card animate__animated animate__fadeInUp">
+            <div class="icon-circle">🚀</div>
+            <h3>14x Boosts</h3>
+            <p>Instant Server Level 3. Valid for 1 Month.</p>
+            <div class="price">$10.00 <span>LTC</span></div>
+            <a href="https://discord.com/users/YOUR_USER_ID" class="buy-btn">DM to Purchase</a>
         </div>
 
-        <div class="card">
-            <h3>Monthly Decos</h3>
-            <p>Profile Effects & Decorations</p>
-            <div class="price">$3.50</div>
-            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">Order on Discord</a>
+        <div class="card animate__animated animate__fadeInRight">
+            <div class="icon-circle">✨</div>
+            <h3>Decorations</h3>
+            <p>Custom Profile Effects & Avatar Decorations.</p>
+            <div class="price">$3.50 <span>LTC</span></div>
+            <a href="https://discord.com/users/YOUR_USER_ID" class="buy-btn">DM to Purchase</a>
         </div>
     </div>
 
-    <div class="ltc-section">
-        <p><strong>LTC Wallet Address:</strong></p>
-        <div class="address" onclick="copyAddr()">LgGyvBLoQGXs9T6dztLWi9AL4G5kz1F3N5</div>
-        <p style="font-size: 12px; color: #80848E;">Click to copy address. Send payment then DM me!</p>
+    <div class="ltc-section animate__animated animate__fadeInUp">
+        <h3 style="color: white; margin-top: 0;">Payment Method</h3>
+        <p>Click address to copy</p>
+        <div class="address" id="ltcAddr" onclick="copyAddr()">YOUR_LTC_ADDRESS_HERE</div>
+        <p style="font-size: 13px; color: #80848E;">After sending LTC, DM me your transaction hash and Discord invite link.</p>
     </div>
 
     <script>
         function copyAddr() {
-            const addr = "LgGyvBLoQGXs9T6dztLWi9AL4G5kz1F3N5";
+            const addr = document.getElementById('ltcAddr').innerText;
             navigator.clipboard.writeText(addr);
-            alert("LTC Address Copied!");
+            
+            const btn = document.getElementById('ltcAddr');
+            const originalColor = btn.style.color;
+            btn.style.color = "#ffffff";
+            btn.innerText = "COPIED!";
+            
+            setTimeout(() => {
+                btn.style.color = "#31B475";
+                btn.innerText = addr;
+            }, 1500);
         }
     </script>
 
