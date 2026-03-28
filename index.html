@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg: #0b0c0e;
-            --card: rgba(255, 255, 255, 0.03); /* Transparent Glass */
+            --card: rgba(255, 255, 255, 0.03); 
             --blurple: rgba(88, 101, 242, 0.8);
             --nitro: #ff73fa;
             --text: #dbdee1;
@@ -98,7 +98,7 @@
 
         .card {
             background: var(--card);
-            backdrop-filter: blur(15px); /* Transparent Glass Blur */
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 35px;
@@ -145,6 +145,7 @@
             padding: 25px;
             width: 400px;
             border: 1px solid rgba(255,255,255,0.05);
+            margin: 10px;
         }
     </style>
 </head>
@@ -153,13 +154,13 @@
     <div id="snow-container"></div>
 
     <header>
-        <h1 class="animate__animated animate__pulse animate__infinite">PREMIUM</h1>
+        <h1 class="animate__animated animate__fadeIn">PREMIUM COSMETICS</h1>
         <p style="color: #80848e;">Secure LTC Delivery • Fast Support</p>
     </header>
 
     <div class="tabs">
         <button class="tab-btn active" onclick="openTab('products')">PRODUCTS</button>
-        <button class="tab-btn" onclick="openTab('reviews')">VOUCHES</button>
+        <button class="tab-btn" onclick="openTab('reviews')">REVIEWS</button>
     </div>
 
     <div id="products" class="content-section active animate__animated animate__fadeIn">
@@ -167,7 +168,7 @@
             <div class="img-box">💎</div>
             <h3>Nitro Monthly</h3>
             <p>Full subscription + 2 Boosts.</p>
-            <div class="price">$5.00</div>
+            <div class="price">$5.50</div>
             <a href="https://discord.com/users/1448047030197817545" class="buy-btn">PURCHASE</a>
         </div>
 
@@ -176,6 +177,14 @@
             <h3>14x Boosts</h3>
             <p>Level 3 server perks instantly.</p>
             <div class="price">$10.00</div>
+            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">PURCHASE</a>
+        </div>
+
+        <div class="card">
+            <div class="img-box">✨</div>
+            <h3>Monthly Decos</h3>
+            <p>Profile Effects & Avatar Decorations.</p>
+            <div class="price">$3.50</div>
             <a href="https://discord.com/users/1448047030197817545" class="buy-btn">PURCHASE</a>
         </div>
     </div>
