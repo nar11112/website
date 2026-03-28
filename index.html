@@ -3,215 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Discord Cosmetics | LTC</title>
+    <title>Cosmetic Shop | Premium Discord Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         :root {
-            --discord-dark: #232428;
-            --discord-card: #1e1f22;
+            --bg: #0f1012;
+            --card: #18191c;
             --blurple: #5865F2;
-            --nitro-pink: #ff73fa;
-            --boost-pink: #f47fff;
-            --ltc-blue: #345D9D;
-            --text-main: #dbdee1;
+            --nitro: #ff73fa;
+            --boost: #f47fff;
+            --text: #dbdee1;
+            --green: #23a559;
         }
 
         body {
-            background-color: var(--discord-dark);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
             font-family: 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-bottom: 50px;
+        }
+
+        /* Hero Header */
+        header {
+            text-align: center;
             padding: 60px 20px;
-            margin: 0;
-            overflow-x: hidden;
+            background: radial-gradient(circle at center, rgba(88, 101, 242, 0.15) 0%, transparent 70%);
+            width: 100%;
         }
 
-        /* Background Glow Effect */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -10%;
-            left: -10%;
-            width: 40%;
-            height: 40%;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.15) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-        }
+        h1 { color: white; font-size: 2.5rem; margin: 0; }
+        .id-badge { font-size: 12px; color: #80848e; background: #2b2d31; padding: 4px 10px; border-radius: 12px; margin-top: 10px; display: inline-block; }
 
-        h1 { 
-            color: white; 
-            font-size: 3rem; 
-            margin-bottom: 5px; 
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .subtitle { margin-bottom: 50px; color: #b5bac1; font-size: 1.1rem; }
-
-        .container {
+        /* Tabs */
+        .tabs {
             display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 1100px;
+            gap: 10px;
+            margin-bottom: 40px;
+            background: #111214;
+            padding: 5px;
+            border-radius: 10px;
         }
 
+        .tab-btn {
+            padding: 10px 25px;
+            border: none;
+            background: transparent;
+            color: #b5bac1;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--blurple);
+            color: white;
+        }
+
+        /* Content Sections */
+        .content-section { display: none; width: 100%; max-width: 1100px; }
+        .content-section.active { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+
+        /* Cards */
         .card {
-            background: var(--discord-card);
-            border-radius: 16px;
-            padding: 30px;
+            background: var(--card);
+            border-radius: 12px;
+            padding: 25px;
             width: 300px;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s;
             position: relative;
-            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-12px);
-            border-color: var(--blurple);
-            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+            transform: translateY(-8px);
+            border-color: var(--nitro);
+            box-shadow: 0 0 20px rgba(255, 115, 250, 0.2);
         }
 
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
+        .img-box {
+            font-size: 50px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
         }
 
-        .price { 
-            font-size: 28px; 
-            font-weight: 800; 
-            color: #fff; 
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .price span { font-size: 16px; color: #31B475; }
+        .price { font-size: 24px; font-weight: bold; color: white; margin: 15px 0; }
 
         .buy-btn {
             background: var(--blurple);
             color: white;
             text-decoration: none;
-            padding: 14px 25px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 6px;
             display: block;
             font-weight: bold;
-            transition: background 0.2s;
-            border: none;
-            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .buy-btn:hover {
-            background: #4752c4;
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+        .buy-btn:hover { background: #4752c4; }
+
+        /* Review Section */
+        .review-card {
+            background: #1e1f22;
+            border-radius: 10px;
+            padding: 20px;
+            width: 45%;
+            min-width: 300px;
+            border-left: 4px solid var(--green);
         }
 
-        .ltc-section {
-            margin-top: 60px;
-            background: #111214;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid var(--ltc-blue);
-            width: 100%;
-            max-width: 500px;
-        }
+        .rev-user { font-weight: bold; color: white; display: flex; align-items: center; gap: 10px; }
+        .stars { color: #f1c40f; font-size: 14px; }
+        .rev-text { font-style: italic; color: #b5bac1; margin-top: 10px; }
 
-        .address {
-            background: #000;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Courier New', Courier, monospace;
-            cursor: pointer;
-            color: #31B475;
-            word-break: break-all;
-            margin: 15px 0;
-            border: 1px dashed #333;
-            transition: all 0.2s;
-        }
-
-        .address:active { transform: scale(0.98); background: #0a0a0a; }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--nitro-pink);
-            color: black;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 20px;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
 
-    <h1 class="animate__animated animate__fadeInDown">Cosmetic Shop</h1>
-    <p class="subtitle animate__animated animate__fadeIn">Fast Delivery • Secure Payments via Litecoin</p>
+    <header>
+        <h1 class="animate__animated animate__fadeIn">Premium Cosmetics</h1>
+        <div class="id-badge">Seller ID: 1448047030197817545</div>
+    </header>
 
-    <div class="container">
-        <div class="card animate__animated animate__fadeInLeft">
-            <div class="badge">Hot</div>
-            <div class="icon-circle">💎</div>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('products')">Browse Products</button>
+        <button class="tab-btn" onclick="openTab('reviews')">Customer Reviews</button>
+    </div>
+
+    <div id="products" class="content-section active animate__animated animate__fadeIn">
+        <div class="card">
+            <div class="img-box">💎</div>
             <h3>Discord Nitro</h3>
-            <p>Full Month Subscription with 2 Boosts Included.</p>
-            <div class="price">$5.00 <span>LTC</span></div>
-            <a href="https://discord.com/users/YOUR_USER_ID" class="buy-btn">DM to Purchase</a>
+            <p>1 Month Full Subscription. All perks unlocked.</p>
+            <div class="price">$5.00 LTC</div>
+            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">Contact to Buy</a>
         </div>
 
-        <div class="card animate__animated animate__fadeInUp">
-            <div class="icon-circle">🚀</div>
-            <h3>14x Boosts</h3>
-            <p>Instant Server Level 3. Valid for 1 Month.</p>
-            <div class="price">$10.00 <span>LTC</span></div>
-            <a href="https://discord.com/users/YOUR_USER_ID" class="buy-btn">DM to Purchase</a>
+        <div class="card">
+            <div class="img-box">🚀</div>
+            <h3>14x Server Boosts</h3>
+            <p>Instantly hit Level 3. Valid for 30 days.</p>
+            <div class="price">$10.00 LTC</div>
+            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">Contact to Buy</a>
         </div>
 
-        <div class="card animate__animated animate__fadeInRight">
-            <div class="icon-circle">✨</div>
-            <h3>Decorations</h3>
-            <p>Custom Profile Effects & Avatar Decorations.</p>
-            <div class="price">$3.50 <span>LTC</span></div>
-            <a href="https://discord.com/users/YOUR_USER_ID" class="buy-btn">DM to Purchase</a>
+        <div class="card">
+            <div class="img-box">🎭</div>
+            <h3>Avatar Decos</h3>
+            <p>Exclusive profile effects and decorations.</p>
+            <div class="price">$3.50 LTC</div>
+            <a href="https://discord.com/users/1448047030197817545" class="buy-btn">Contact to Buy</a>
         </div>
     </div>
 
-    <div class="ltc-section animate__animated animate__fadeInUp">
-        <h3 style="color: white; margin-top: 0;">Payment Method</h3>
-        <p>Click address to copy</p>
-        <div class="address" id="ltcAddr" onclick="copyAddr()">YOUR_LTC_ADDRESS_HERE</div>
-        <p style="font-size: 13px; color: #80848E;">After sending LTC, DM me your transaction hash and Discord invite link.</p>
+    <div id="reviews" class="content-section animate__animated animate__fadeIn">
+        <div class="review-card">
+            <div class="rev-user">AlphaUser <span class="stars">⭐⭐⭐⭐⭐</span></div>
+            <p class="rev-text">"Vouch! Fast delivery for the 14x boosts. My server is level 3 now. Paid with LTC."</p>
+        </div>
+
+        <div class="review-card">
+            <div class="rev-user">Cosmo_01 <span class="stars">⭐⭐⭐⭐⭐</span></div>
+            <p class="rev-text">"Nitro monthly was super cheap. Easy transaction via Discord DMs."</p>
+        </div>
+
+        <div class="review-card">
+            <div class="rev-user">LTC_King <span class="stars">⭐⭐⭐⭐⭐</span></div>
+            <p class="rev-text">"Legit seller. Got my profile decoration in under 5 minutes."</p>
+        </div>
     </div>
 
     <script>
-        function copyAddr() {
-            const addr = document.getElementById('ltcAddr').innerText;
-            navigator.clipboard.writeText(addr);
-            
-            const btn = document.getElementById('ltcAddr');
-            const originalColor = btn.style.color;
-            btn.style.color = "#ffffff";
-            btn.innerText = "COPIED!";
-            
-            setTimeout(() => {
-                btn.style.color = "#31B475";
-                btn.innerText = addr;
-            }, 1500);
+        function openTab(tabName) {
+            var i;
+            var x = document.getElementsByClassName("content-section");
+            var btns = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                btns[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "flex";
+            event.currentTarget.classList.add("active");
         }
     </script>
 
